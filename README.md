@@ -1,6 +1,6 @@
 # 📚 2024-modern-react-deep-dive-study
 
-[![Since](https://img.shields.io/badge/since-2024.11.13-6A5ACD.svg?&edge_flat=false)](https://github.com/JAVACAFE-STUDY/2024-modern-react-deep-dive-study)
+[![Since](https://img.shields.io/badge/since-2024.11.14-6A5ACD.svg?&edge_flat=false)](https://github.com/JAVACAFE-STUDY/2024-modern-react-deep-dive-study)
 
 ## 🧑🏻‍💻 Goal
 
