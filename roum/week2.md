@@ -1,5 +1,6 @@
 ## Week1 comments
-> Ref와 용량이 큰 데이터
+> 큰 객체에는 useRef 사용하기
+=> 큰 데이터라면 BE에서 관리하는 것이 설계적으로는 옳다고 생각
 
 ## 브라우저 렌더링 VS 리액트 렌더링
 
@@ -89,9 +90,10 @@ function App() {
 
 
 
-### 3. 조정 단계(Reconciliation)에서 sibling의 역할
+### 3. 재조정 단계(Reconciliation)에서 sibling의 역할
 - React의 Reconciliation 과정에서 Fiber 알고리즘은 새로운 Virtual DOM과 기존 Fiber 트리를 비교하여 변경 사항을 반영
 - 이 과정에서 sibling은 효율적인 탐색을 지원
+
 c.f. Reconciliation은 React가 이전 Virtual DOM 트리(current)와 새 Virtual DOM 트리(workInProgress)를 비교하여 변경된 부분만 업데이트하는 과정
 - child, sibling, return 속성 중, sibling은 형제 노드 간의 관계를 유지하며 순회와 비교를 지원 -> 순서 결정!
 
@@ -114,7 +116,7 @@ function List() {
   ├── sibling: <li>Item 2</li>
   └── sibling: <li>Item 3</li>
 ```
--> 조정 단계에서 각 노드를 순서대로 비교하며, 변경되지 않은 노드는 그대로 둔다.
+-> 재조정 단계에서 각 노드를 순서대로 비교하며, 변경되지 않은 노드는 그대로 둔다.
 
 ### 4. sibling과 key의 관계
 - 리스트 아이템에 key를 설정하지 않거나 잘못된 key를 사용하면, React는 sibling을 잘못 관리할 가능성이 있음
