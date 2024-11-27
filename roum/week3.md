@@ -5,7 +5,7 @@ keywords
 - 스냅샷
 - 태스크큐
 
-### 클로저 관점에서 리액트
+### 1. 클로저 관점에서 리액트
 
 ```
 for (var i = 0; i < 5; i++) {
@@ -95,3 +95,75 @@ reference: https://velog.io/@onedanbee/%EB%B9%84%EB%8F%99%EA%B8%B0-Task-Queue-Ma
 
 c.f. 마이크로 태스크 큐 : 기존 태스크 큐보다 우선권을 가짐
  -Promise
+
+
+----
+
+
+## 2. 게으른 초기화(lazy initialization)
+
+: useState에 변수 대신 함수를 넘기는 것
+
+> state가 처음 만들어질 때만 사용된다. 만약 이후에 리렌더링이 발생된다면 이 함수의 실행은 무시된다.
+
+
+### 왜 이런 현상이 일어날까?
+
+```
+const [state, setState] = useState(expensiveCalculation());
+```
+1) useState가 호출되기 전에 이미 expensiveCalculation()는 실행이 된다.
+2) 따라서, useState에는 함수가 실행된 결과값이 전달된다.
+3) 렌더링이 발생할 때마다 expensiveCalculation()이 항상 실행되므로, 불필요한 연산이 발생한다.
+4) 실행된 결과값은 useState의 초기화에 더 이상 사용되지 않는다. (불필요 렌더링)
+
+
+```
+const [state, setState] = useState(() => expensiveCalculation());
+```
+1) useState에 함수 () => expensiveCalculation() 자체를 전달
+2) 리액트는 전달된 함수의 참조를 내부적으로 저장한다.
+3) **자바스크립트**에서는 함수가 실행되지 않고 참조로 전달되면, 해당 함수는 필요할 때만 실행
+
+
+
+### 리액트의 상태 관리 구조
+리액트는 상태를 효율적으로 관리하기 위해 컴포넌트별로 상태 값을 메모리에 저장한다.
+그리고, 최초 렌더링과 리렌더링에 다른 저장 방식을 사용한다.
+
+1) 최초 렌더링: 
+- useState에 전달된 함수가 실행되고, 그 결과가 상태 값으로 저장된다.
+- 상태 값이 리액트의 컴포넌트 상태 트리에 기록된다.
+
+2) 리렌더링:
+- 리액트는 이미 저장된 상태 값을 재사용한다.
+- 그래서 useState에 전달된 초기화 함수는 호출되지 않는다. (이미 설정된 상태 값을 유지하고, 전달된 초기값이나 초기화 함수는 무시)
+
+
+### 예시
+```
+function MyComponent() {
+  console.log("Component rendering...");
+  
+  const [state, setState] = useState(expensiveCalculation());
+
+  return <div>{state}</div>;
+}
+
+function expensiveCalculation() {
+  console.log("Expensive calculation executed");
+  return 42;
+}
+
+```
+
+MyComponent가 리렌더링될 때, expensiveCalculation()이 다시 호출
+하지만 useState는 이미 초기화된 상태 값을 유지하므로, expensiveCalculation()의 실행 결과는 무시
+즉, 실행된 값은 상태 초기화에 사용되지 않음
+state는 여전히 이전의 초기화 값(42)를 유지
+
+
+### 리액트의 최적화 설계
+: 리액트는 성능 최적화를 위해, 상태 초기화 함수가 최소한의 필요 조건에서만 실행되도록 설계
+=> useState는 초기화 함수가 최초 렌더링에서만 실행되도록 보장
+
