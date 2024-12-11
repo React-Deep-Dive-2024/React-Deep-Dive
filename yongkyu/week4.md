@@ -2,10 +2,23 @@
 
 [4.1 서버사이드 렌더링이란](#41-서버사이드-렌더링이란)
 
-- [1. 개념](#411-개념)
-- [2. 장단점](#412-장단점)
+- [4.1.1 개념](#411-개념)
+- [4.1.2 장단점](#412-장단점)
 
 [4.2 서버 사이드 렌더링을 위한 리액트 API 살펴보기](#42-서버-사이드-렌더링을-위한-리액트-api-살펴보기)
+
+- [4.2.1 rendertostring](#421-rendertostring)
+- [4.2.2 rendertostaticmarkup](#422-rendertostaticmarkup)
+- [4.2.3 rendertonodestream](#423-rendertonodestream)
+- [4.2.4 rendertostaticnodestream](#424-rendertostaticnodestream)
+- [4.2.5 hydrate](#425-hydrate)
+- [4.2.6 정리](#426-정리)
+
+[4.3 nextjs 톺아보기](#43-nextjs-톺아보기)
+
+- [4.3.1 nextjs 란](#431-nextjs-란)
+- [4.3.2 nextjs 시작하기](#432-nextjs-시작하기)
+- [4.3.3 data fetching](#433-data-fetching)
 
 ## 4.1 서버사이드 렌더링이란
 
