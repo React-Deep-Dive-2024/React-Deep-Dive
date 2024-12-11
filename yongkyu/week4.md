@@ -121,4 +121,30 @@ const result = ReactDOMServer.renderToString(       // <--
 
 ### 4.3.2 Next.js 시작하기
 
--
+(1) pages/\_app.tsx <br>
+
+- 전체 페이지의 시작점
+- error 바운더리를 사용해 애플리케이션 전역에서 발생하는 에러 처리
+- global css 선언
+- 모든 페이지에 공통으로 사용되는 데이터 제공 (ex. 인증)
+
+(2) pages/\_document.tsx
+
+- \_app.tsx가 애플리케이션 페이지 전체 초기화라면, \_document.tsx는 HTML을 초기화 하는 곳
+- \_app.tsx는 서버나 클라이언트에서 실행될 수 있지만, \_document는 서버에서만 실행
+
+(3) 서버 라우팅과 클라이언트 라우팅의 차이
+
+- Next.js는 서버 사이드 렌더링을 수행하고 동시에 SPA 같이 클라이언트 라우팅도 수행한다.
+- Next.js에서 제공하는 Link 태그로 SPA 라우팅이 가능하다.
+- 즉, Next.js 는 SSR의 장점, 사용자가 최초 페이지를 빠르게 볼 수 있고 SPA 라우팅을 통해 SPA 장점을 모두 가져왔다.
+
+### 4.3.3 Data Fetching
+
+(1) getStaticPaths와 getStaticProps
+
+- getStaticPaths는 접근 가능한 주소를 정의
+- getStaticProps는 getStaticPaths에서 정의한 페이지를 기준으로 해당 페이지 요청이 왔을 때 제공할 props를 반환
+- 즉, getStaticPaths를 통해 생성된 주소 만큼의 HTML을 빌드 시점에 미리 데이터를 불러온 다음 만들어 놓는다. (해당 주소로 접근 시 SSR을 통해 사용자가 빠르게 볼 수 있음)
+
+(2) getServerSideProps
