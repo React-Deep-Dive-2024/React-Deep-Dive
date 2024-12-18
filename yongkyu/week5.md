@@ -9,7 +9,8 @@
 - [5.2.1 가장 기본적인 방법: useState와 useReducer](#521-가장-기본적인-방법-usestate와-usereducer)
 - [5.2.2 지역 상태의 한계를 벗어나보자: useState의 상태를 바깥으로 분리하기](#522-지역-상태의-한계를-벗어나보자-usestate의-상태를-바깥으로-분리하기)
 - [5.2.3 useState와 Context를 동시에 사용해 보기](#523-usestate와-context를-동시에-사용해-보기)
-- [5.2.4 상태 관리 라이브러리 Recoil, Jotai, Zustand 살펴보기](#524-상태-관리-라이브러리-recoil-jotai-zustand-살펴보기)
+- [5.2.4 상태 관리 라이브러리 Recoil, Jotai, Zustand 살펴보기🎈](#524-상태-관리-라이브러리-recoil-jotai-zustand-살펴보기)
+- [5.2.5 정리](#525-정리)
 
 ## 5.1 상태 관리는 왜 필요한가?
 
@@ -143,6 +144,15 @@ export default function App() {
 
 ### 5.2.3 useState와 Context를 동시에 사용해 보기
 
+- 많은 상태 관리 라이브러리의 작동 방식
+
+1. useState, useReducer의 한계는 결국 지역 상태관리이고 이를 극복하기 위해 외부 어딘가에 상태를 둔다. 이는 컴포넌트 최상단 이나, 격리된 자바스크립트 스코프 어딘가일 수도 있다.
+2. 이 외부 상태 변경을 감지해 컴포넌트의 렌더링을 일으킨다.
+
 ### 5.2.4 상태 관리 라이브러리 Recoil, Jotai, Zustand 살펴보기
 
-[🎈Recoil 톱아보기](https://fkawnltjsejdj.tistory.com/category/React)
+[🎈Recoil 톺아보기](https://fkawnltjsejdj.tistory.com/category/React)
+
+### 5.2.5 정리
+
+- 많은 상태 관리 라이브러리 중 현재 프로젝트에 어울리는 라이브러리를 사용하는 것이 효율적이고, 잘 관리되어 npm 에서 많이 다운받거나 git star가 많은 라이브러리를 선택 하는것이 보다 안정적이다. (recoil의 경우 몇년간 업데이트도 유지보수도 없으니 사용시 유의하자)
