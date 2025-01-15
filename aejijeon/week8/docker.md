@@ -48,7 +48,7 @@ VM은 하드웨어를 가상화하여 각각의 독립된 운영체제를 실행
 ### 3. Container (컨테이너)
 
 컨테이너는 애플리케이션과 실행 환경을 패키징하며, 호스트 OS 커널을 공유하여 VM보다 가볍고 빠릅니다. Docker는 대표적인 컨테이너 플랫폼입니다.
-![image.png](./assets/1.png)
+![image.png](./assets/2.png)
 ### 장점
 
 - **환경 격리**
@@ -95,7 +95,7 @@ RUN npm install
 FROM base AS builder
 
 # build 시점에만 사용되는 변수
-# docker build 시에 --build-arg 옵션을 활용하여 오버라이딩 함
+# docker build 시에 --build-arg 옵션을 활용하면 오버라이딩 함
 ARG NEXT_PUBLIC_DOMAIN_URL
 ARG NEXT_PUBLIC_COMMON_API_URL
 ARG NEXT_PUBLIC_AI_SKETCH_API_URL
